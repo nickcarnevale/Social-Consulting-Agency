@@ -1,0 +1,44 @@
+.outcomes-container {
+    display: flex;
+    flex-direction: column;
+    width: 100;
+    align-items: right;
+  }
+  
+  .outcome-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%; /* Increase this to make the boxes wider */
+    margin: 10px auto; /* Center the boxes */
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+  
+  .outcome-name {
+    flex-grow: 1;
+  }
+  
+  .buttons-container {
+    display: flex;
+    flex-direction: row; /* Change the direction to row */
+    gap: 10px;
+  }
+  
+  .view-button,
+  .delete-button {
+    border: none;
+    padding: 5px 5px;
+    border-radius: 4px;
+    background-color: #FF6B6B;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .view-button {
+    background-color: #3a9bff;
+  }
+  
