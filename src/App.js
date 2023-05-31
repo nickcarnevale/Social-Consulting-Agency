@@ -1,66 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import { getAllOutcomes } from './API';
-import { deleteOutcome } from './OutcomeUtils';
-import AddOutcomeForm from './AddOutcomeForm';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
+import useOutcomes from './components/UseOutcomes';
+import AddOutcomeForm from './components/AddOutcomeForm';
+import SearchForm from './components/SearchForm';
+import OutcomeList from './components/OutcomeList';
+import OutcomePage from './components/OutcomePage';
 
-function App() {
-  const [outcomes, setOutcomes] = useState([]);
+import './styles/App.css';
 
-  useEffect(() => {
-    getAllOutcomes().then(setOutcomes);
-  }, []);
-
-  const fetchOutcomes = () => {
-    getAllOutcomes().then(setOutcomes);
-  };
-
-
-  const handleAddOutcome = (outcome) => {
-    fetch('http://localhost:3001/outcomes', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(outcome),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
-
-  const handleDeleteOutcome = (id) => {
-    deleteOutcome(id)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        fetchOutcomes();
-      })
-      .catch((error) => {
-        console.error('Error deleting outcome:', error);
-      });
-  };
+export default function App() {
+  const { searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch } = useOutcomes();
 
   return (
-    <div className="app-container">
-      <h1 className="title">Social Consulting Database</h1>
-      <div className="outcomes-container">
-        {outcomes.map(outcome => (
-          <div key={outcome.id} className="outcome-item">
-            <p>{outcome.name}</p>
-            <button className="delete-button" onClick={() => handleDeleteOutcome(outcome.id)}>Delete</button>
-          </div>
-        ))}
+    <Router>
+      <div className="app-container">
+        <h1 className="title">Social Consulting Database</h1>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <div className="search-and-add-container">
+                <SearchForm onSearch={handleSearch} />
+                <Link to="/add-outcome" className="add-outcome-button">Add Outcome</Link>
+              </div>
+              <OutcomeList outcomes={searchResults} onDelete={handleDeleteOutcome} />
+            </>
+          } />
+          <Route path="/outcome/:id" element={<OutcomePage />} />
+          <Route path="/add-outcome" element={
+            <>
+              <AddOutcomeForm onAddOutcome={handleAddOutcome} />
+              <Link to="/" className="back-to-search-button">Back to Search</Link>
+            </>
+          } />
+        </Routes>
       </div>
-      <AddOutcomeForm onAddOutcome={handleAddOutcome} />
-    </div>
+    </Router>
   );
 }
-
-export default App;
