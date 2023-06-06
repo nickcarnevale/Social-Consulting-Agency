@@ -1,3 +1,7 @@
+body{
+  background-color: #e8e6e6;
+}
+
 .App {
   text-align: center;
 }
@@ -96,4 +100,20 @@
   border: none;
   border-radius: 4px;
   text-decoration: none;
+}
+
+.filter-dropdown {
+  padding: 5px 10px;
+  border: none;
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+  margin-left: 20px; /* move it a little farther right from the search button */
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown:focus {
+  outline: none;
 }
