@@ -12,7 +12,8 @@ import './styles/App.css';
 
 export default function App() {
   const { searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch } = useOutcomes();
-  const { filteredOutcomes, handleFilterChange, handleSearch: handleOutcomeSearch } = OutcomeFilter(); 
+  const { filteredOutcomes, handleFilterChange, handleOutcomeSearch, handleExport, refreshOutcomes} = OutcomeFilter(); 
+  
 
   return (
     <Router>
@@ -22,9 +23,9 @@ export default function App() {
           <Route path="/" element={
             <>
               <div className="search-and-add-container">
-                <SearchForm onSearch={handleSearch} />
+                <SearchForm onSearch={handleSearch} /> 
                 <Link to="/add-outcome" className="add-outcome-button">Add Outcome</Link>
-                <Link to="/outcomes" className="add-outcome-button">Navigate Outcomes</Link>
+                <Link onClick={refreshOutcomes} to="/outcomes" className="add-outcome-button">Navigate Outcomes</Link>
               </div>
               <OutcomeList outcomes={searchResults} onDelete={handleDeleteOutcome} />
             </>
@@ -32,14 +33,14 @@ export default function App() {
           <Route path="/outcome/:id" element={<OutcomePage />} />
           <Route path="/add-outcome" element={
             <>
-              <AddOutcomeForm onAddOutcome={handleAddOutcome} />
+              <AddOutcomeForm onAddOutcome={handleAddOutcome} onRefresh={refreshOutcomes}/>
               <Link to="/" className="back-to-search-button">Back to Search</Link>
             </>
           } />
           <Route path="/outcomes" element={
             <>
               <div className = "search-and-add-container">
-                <SearchForm onSearch={handleOutcomeSearch} />
+                <SearchForm onSearch={handleOutcomeSearch} /> 
                 <select onChange={e => handleFilterChange(e.target.value)} className="filter-dropdown">
                   <option value="id">Filter</option>
                   <option value="id">Recently Added</option>
@@ -48,6 +49,7 @@ export default function App() {
               </div>
               <OutcomeList outcomes={filteredOutcomes} onDelete={handleDeleteOutcome} />
               <Link to="/" className="back-to-search-button">Back to Search</Link>
+              <button onClick={handleExport} className="export-button">Export to CSV</button>
             </>
           } />
         </Routes>

@@ -10,7 +10,7 @@ function OutcomeList({ outcomes, onDelete }) {
           <p className="outcome-name">{outcome.name}</p>
           <div className="buttons-container">
             <Link to={`/outcome/${outcome.id}`}>
-              <button className="view-button">View Details</button>
+              <button className="view-button">View </button>
             </Link>
             <button className="delete-button" onClick={() => onDelete(outcome.id)}>Delete</button>
           </div>
