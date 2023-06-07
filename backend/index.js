@@ -40,8 +40,8 @@ app.get('/outcomes/:id', async (req, res) => {
 // Endpoint to add a new outcome
 app.post('/outcomes', async (req, res) => {
     try {
-        const { name, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink } = req.body;
-        const outcome = await db.one('INSERT INTO outcomes (name, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *', [name, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink]);
+        const { name, nombreEspanol, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink } = req.body;
+        const outcome = await db.one('INSERT INTO outcomes (name, nombreEspanol, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *', [name, nombreEspanol, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink]);
         res.json(outcome);
     } catch (err) {
         res.json({ error: err.message || err });
@@ -51,11 +51,11 @@ app.post('/outcomes', async (req, res) => {
 // Endpoint to update an existing outcome
 app.put('/outcomes/:id', async (req, res) => {
   const id = req.params.id;
-  const { name, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink} = req.body;
+  const { name, nombreEspanol, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink} = req.body;
 
   try {
-      await db.none('UPDATE outcomes SET name=$1, stakeholder=$2, stakeholderDescription=$3, scale=$4, indicator=$5, proxy=$6, proxyDescription=$7, value=$8, euroValue=$9, reportName=$10, reportLink=$11 WHERE id=$12',
-          [name, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue,reportName, reportLink, id]);
+      await db.none('UPDATE outcomes SET name=$1, nombreEspanol=$2, stakeholder=$3, stakeholderDescription=$4, scale=$5, indicator=$6, proxy=$7, proxyDescription=$8, value=$9, euroValue=$10, reportName=$11, reportLink=$12 WHERE id=$13',
+          [name, nombreEspanol, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue,reportName, reportLink, id]);
       res.status(200).json({ status: 'success', message: 'Outcome updated' });
   } catch (error) {
       console.error('ERROR:', error);

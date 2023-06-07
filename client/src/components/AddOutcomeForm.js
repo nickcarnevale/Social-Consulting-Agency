@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import '../styles/AddOutcomeForm.css';
 
-function AddOutcomeForm({ onAddOutcome, onRefresh}) {
+function AddOutcomeForm({ onAddOutcome}) {
   const [outcome, setOutcome] = useState({
     name: "",
+    nombreEspanol: "",
     stakeholder: "",
     stakeholderDescription: "",
     scale: "",
@@ -29,11 +30,11 @@ function AddOutcomeForm({ onAddOutcome, onRefresh}) {
       return;
     }
     onAddOutcome(outcome);
-    onRefresh();
 
     // reset form
     setOutcome({
       name: "",
+      nombreEspanol: "",
       stakeholder: "",
       stakeholderDescription: "",
       scale: "",

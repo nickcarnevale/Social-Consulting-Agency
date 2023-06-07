@@ -1,19 +1,16 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import useOutcomes from './components/UseOutcomes';
 import AddOutcomeForm from './components/AddOutcomeForm';
 import SearchForm from './components/SearchForm';
 import OutcomeList from './components/OutcomeList';
+import Navigate from './components/Navigate';
 import OutcomePage from './components/OutcomePage';
-import OutcomeFilter from './components/OutcomeFilter';
 
 import './styles/App.css';
 
 export default function App() {
-  const { searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch } = useOutcomes();
-  const { filteredOutcomes, handleFilterChange, handleOutcomeSearch, handleExport, refreshOutcomes} = OutcomeFilter(); 
-  
+  const { searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch, refreshOutcomes, handleOutcomeSearch, handleFilterChange, filteredOutcomes, handleExport } = useOutcomes();
 
   return (
     <Router>
@@ -27,13 +24,14 @@ export default function App() {
                 <Link to="/add-outcome" className="add-outcome-button">Add Outcome</Link>
                 <Link onClick={refreshOutcomes} to="/outcomes" className="add-outcome-button">Navigate Outcomes</Link>
               </div>
-              <OutcomeList outcomes={searchResults} onDelete={handleDeleteOutcome} />
+              <OutcomeList outcomes={searchResults} />
+              <p>✔ means outcome has a value</p>
             </>
           } />
           <Route path="/outcome/:id" element={<OutcomePage />} />
           <Route path="/add-outcome" element={
             <>
-              <AddOutcomeForm onAddOutcome={handleAddOutcome} onRefresh={refreshOutcomes}/>
+              <AddOutcomeForm onAddOutcome={handleAddOutcome}/>
               <Link to="/" className="back-to-search-button">Back to Search</Link>
             </>
           } />
@@ -47,9 +45,10 @@ export default function App() {
                   <option value="alphabetical">Sort Alphabetically</option>
                 </select>
               </div>
-              <OutcomeList outcomes={filteredOutcomes} onDelete={handleDeleteOutcome} />
+              <Navigate outcomes={filteredOutcomes} onDelete={handleDeleteOutcome}/>
               <Link to="/" className="back-to-search-button">Back to Search</Link>
               <button onClick={handleExport} className="export-button">Export to CSV</button>
+              <p>✔ means outcome has a value</p>
             </>
           } />
         </Routes>
