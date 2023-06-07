@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { sortBy } from 'lodash';
 import Papa from 'papaparse';
 import { getAllOutcomes } from '../api';
-import { deleteOutcome, addOutcome } from './OutcomeUtils';
+import { deleteOutcome, addOutcome , updateOutcome} from './OutcomeUtils';
 
 export default function useOutcomes() {
   const [outcomes, setOutcomes] = useState([]);
@@ -27,6 +27,11 @@ export default function useOutcomes() {
         setRefetch(prev => !prev); // add this line
       })
       .catch(error => console.error('Error:', error));
+  };
+
+  const handleUpdateOutcome = async (id, data) => {
+    await updateOutcome(id, data);
+    setOutcomes(outcomes.map(outcome => outcome.id === id ? { ...outcome, ...data } : outcome));
   };
 
   const handleDeleteOutcome = (id) => {
@@ -89,5 +94,5 @@ export default function useOutcomes() {
     link.click();
   };
 
-  return { outcomes, filteredOutcomes, searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch, handleOutcomeSearch, handleFilterChange, handleExport, refreshOutcomes};
+  return { outcomes, filteredOutcomes, searchResults, handleAddOutcome, handleUpdateOutcome, handleDeleteOutcome, handleSearch, handleOutcomeSearch, handleFilterChange, handleExport, refreshOutcomes};
 };

@@ -60,9 +60,9 @@
   margin: 0 10px;
 }
 
-.action-delete {
+.action-update {
   padding: 10px;
   flex-grow: .05;
   margin: 0 10px;
-  background-color: rgb(253, 57, 57);
+  background-color: rgb(4, 162, 36);
 }

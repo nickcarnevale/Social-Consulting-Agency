@@ -28,3 +28,18 @@ export const addOutcome = (outcome) => {
         console.error('Error:', error);
       });
   }
+
+  export async function updateOutcome(id, data) {
+    const response = await fetch(`http://localhost:3001/outcomes/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message);
+    }
+  }
