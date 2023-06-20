@@ -46,7 +46,9 @@ export default function useOutcomes() {
 
   const handleSearch = term => {
     const results = outcomes.filter(outcome =>
-      outcome.name.toLowerCase().includes(term.toLowerCase())
+      outcome.name.toLowerCase().includes(term.toLowerCase()) ||
+      outcome.nombreespanol?.toLowerCase()?.includes(term.toLowerCase()) ||
+      outcome.stakeholder?.toLowerCase()?.includes(term.toLowerCase())
     );
     setSearchResults(results);
   };
@@ -65,7 +67,9 @@ export default function useOutcomes() {
 
   const handleOutcomeSearch = term => {
     const results = outcomes.filter(outcome =>
-      outcome.name.toLowerCase().includes(term.toLowerCase())
+      outcome.name.toLowerCase().includes(term.toLowerCase()) ||
+      outcome.nombreespanol?.toLowerCase()?.includes(term.toLowerCase()) ||
+      outcome.stakeholder?.toLowerCase()?.includes(term.toLowerCase())
     );
     setFilteredOutcomes(results);
   };

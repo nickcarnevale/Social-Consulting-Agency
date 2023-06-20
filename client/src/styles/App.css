@@ -130,3 +130,14 @@ body{
 .filter-dropdown:focus {
   outline: none;
 }
+
+.add-outcome-button:hover {
+  background-color: #0056b3; /* Change the hover background color */
+}
+.back-to-search-button:hover {
+  background-color: #0056b3; /* Change the hover background color */
+}
+
+.export-button:hover {
+  background-color: #0000c7; /* Change the hover background color */
+}

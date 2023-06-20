@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useSingleOutcome from './useSingleOutcome';
 import OutcomeDetails from './OutcomeDetails';
 import useOutcomes from './UseOutcomes';
+import '../styles/OutcomePage.css';
 
 function OutcomePage() {
   const { id } = useParams();
@@ -51,7 +52,8 @@ function OutcomePage() {
             id="name"
             value={updatedOutcome.name || outcome.name || ""}
             onChange={handleChange}
-            placeholder="Enter Outcome"
+            placeholder="
+            "
             required
           />
           <label htmlFor="nombreEspanol">Nombre Espanol:</label>
@@ -61,7 +63,7 @@ function OutcomePage() {
             id="nombreEspanol"
             value={updatedOutcome.nombreEspanol || outcome.nombreespanol || ""}
             onChange={handleChange}
-            placeholder="Enter Nombre Espanol"
+            placeholder=""
           />
           <label htmlFor="stakeholder">Stakeholder:</label>
           <input
@@ -70,7 +72,7 @@ function OutcomePage() {
             id="stakeholder"
             value={updatedOutcome.stakeholder || outcome.stakeholder || ""}
             onChange={handleChange}
-            placeholder="Enter Stakeholder"
+            placeholder=""
           />
           <label htmlFor="stakeholderDescription">Stakeholder Description:</label>
           <input
@@ -79,7 +81,7 @@ function OutcomePage() {
             id="stakeholderDescription"
             value={updatedOutcome.stakeholderDescription || outcome.stakeholderdescription || ""}
             onChange={handleChange}
-            placeholder="Enter Stakeholder Description"
+            placeholder=""
           />        
           <label htmlFor="scale">Scale:</label>
           <input
@@ -88,7 +90,7 @@ function OutcomePage() {
             id="scale"
             value={updatedOutcome.scale || outcome.scale || ""}
             onChange={handleChange}
-            placeholder="Enter Scale"
+            placeholder=""
           />
           <label htmlFor="indicator">Indicator:</label>
           <input
@@ -97,7 +99,7 @@ function OutcomePage() {
             id="indicator"
             value={updatedOutcome.indicator || outcome.indicator || ""}
             onChange={handleChange}
-            placeholder="Enter Indicator"
+            placeholder=""
           /> 
           <label htmlFor="proxy">Proxy:</label>
           <input
@@ -106,7 +108,7 @@ function OutcomePage() {
             id="proxy"
             value={updatedOutcome.proxy || outcome.proxy || ""}
             onChange={handleChange}
-            placeholder="Enter Proxy"
+            placeholder=""
           /> 
           <label htmlFor="proxyDescription">Proxy Description:</label>
           <input
@@ -115,7 +117,7 @@ function OutcomePage() {
             id="proxyDescription"
             value={updatedOutcome.proxyDescription || outcome.proxydescription || ""}
             onChange={handleChange}
-            placeholder="Enter Proxy Description"
+            placeholder=""
           />
           <label htmlFor="value">Value:</label>
           <input
@@ -124,7 +126,7 @@ function OutcomePage() {
             id="value"
             value={updatedOutcome.value || outcome.value || ""}
             onChange={handleChange}
-            placeholder="Enter Value"
+            placeholder=""
           /> 
           <label htmlFor="euroValue">Euro Value:</label>
           <input
@@ -133,7 +135,7 @@ function OutcomePage() {
             id="euroValue"
             value={updatedOutcome.euroValue || outcome.eurovalue || ""}
             onChange={handleChange}
-            placeholder="Enter Euro Value"
+            placeholder=""
           /> 
           <label htmlFor="reportName">Report Name:</label>
           <input
@@ -142,7 +144,7 @@ function OutcomePage() {
             id="reportName"
             value={updatedOutcome.reportName || outcome.reportname || ""}
             onChange={handleChange}
-            placeholder="Enter Report Name"
+            placeholder=""
           /> 
           <label htmlFor="reportLink">Report Link:</label>
           <input
@@ -151,7 +153,7 @@ function OutcomePage() {
             id="reportLink"
             value={updatedOutcome.reportLink || outcome.reportlink || ""}
             onChange={handleChange}
-            placeholder="Enter Report Link"
+            placeholder=""
           /> 
           <button type="submit">Update Outcome</button>
         </form>

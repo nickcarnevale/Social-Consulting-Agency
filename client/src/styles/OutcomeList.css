@@ -48,6 +48,7 @@
     color: #ffffff;
     cursor: pointer;
     text-decoration: none;
+    transition: background-color 0.3s ease; /* Add transition for smooth effect */
   }
   
   .view-button {
@@ -67,3 +68,12 @@
     align-items: center;
     gap: 5px; /* adjust as needed */
   }
+
+ 
+.view-button:hover {
+  background-color: #0F4D01; /* Change the hover background color */
+}
+
+.delete-button:hover {
+  background-color: #8d1b1b; /* Change the hover background color */
+}
