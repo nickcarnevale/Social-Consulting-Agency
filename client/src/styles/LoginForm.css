@@ -1,0 +1,14 @@
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 5rem;
+    padding: 5rem;
+}
+
+.login-form input{
+    padding: 1rem;
+    border-radius: 5px;
+    border: transparent;
+}

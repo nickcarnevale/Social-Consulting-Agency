@@ -1,5 +1,17 @@
 const API_URL = 'http://localhost:3001';
 
+export async function loginUser(email, password) {
+  const response = await fetch(`${API_URL}/users/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }), 
+  });
+  return response.json();
+}
+ 
+
 export async function getAllOutcomes() {
   const response = await fetch(`${API_URL}/outcomes`);
   return response.json();

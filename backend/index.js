@@ -1,18 +1,49 @@
 const express = require('express');
 const app = express();
 const port = 3001;
-
 const pgp = require('pg-promise')();
 const db = pgp('postgres://dnjkzflf:mNHGBAGJPlRDVCxwaEeIsA6dpGNcMLCb@dumbo.db.elephantsql.com/dnjkzflf');
-
 const cors = require('cors');
-app.use(cors());
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 
+app.use(cors());
 app.use(express.json());
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
 });
+
+// Endpoint to register a new user
+app.post('/users/register', async (req, res) => {
+    console.log(req.body);  // Add this line
+    try {
+        const { email, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);  // Hash the password
+        const user = await db.one('INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *', [email, hashedPassword]);
+        res.json({ message: "User registered successfully", user });
+    } catch (err) {
+        res.json({ error: err.message || err });
+    }
+});
+
+// Endpoint to login a user
+app.post('/users/login', async (req, res) => {
+    console.log(req.body);  // Add this line
+    try {
+        const { email, password } = req.body;
+        const user = await db.one('SELECT * FROM users WHERE email = $1', [email]);
+        if (user && await bcrypt.compare(password, user.password)) {  // Check the password
+            const token = jwt.sign({ id: user.id, email: user.email }, 'bG9jYWxob3N0OjMwMDE=', { expiresIn: '1h' });  // Generate a token
+            res.json({ message: "Logged in successfully", token });
+        } else {
+            res.json({ error: "Invalid email or password" });
+        }
+    } catch (err) {
+        res.json({ error: err.message || err });
+    }
+});
+
 
 // Endpoint to get all outcomes
 app.get('/outcomes', async (req, res) => {
