@@ -7,7 +7,7 @@ const OutcomeDetails = ({ outcome }) => (
       <h2>{outcome.name}</h2>
       {outcome.nombreespanol && <h2 className="italicized">{outcome.nombreespanol}</h2>}
     </div>
-    <div>
+    <div className='dcontainer'>
       <p><strong>Stakeholder:</strong> <span>{outcome.stakeholder}</span></p>
       <p><strong>Stakeholder Description:</strong> {outcome.stakeholderdescription}</p>
       <p><strong>Scale:</strong> {outcome.scale}</p>
@@ -17,7 +17,7 @@ const OutcomeDetails = ({ outcome }) => (
       <p><strong>Value:</strong> {outcome.value}</p>
       <p><strong>Euro Value:</strong> {outcome.eurovalue}</p>
       <p><strong>Report Name:</strong> {outcome.reportname}</p>
-      <p><strong>Report Link:</strong> <a href={outcome.reportLink}>{outcome.reportlink}</a></p>
+      <p><strong>Report Link:</strong> <a href={`http://${outcome.reportlink}`}>{outcome.reportlink}</a></p>
     </div>
   </div>
 );

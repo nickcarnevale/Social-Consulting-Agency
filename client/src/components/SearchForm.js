@@ -22,7 +22,7 @@ const SearchForm = ({ onSearch }) => {
         onChange={handleSearchChange}
         className="search-input"
       />
-      <button type="submit" className="search-button">Search</button>
+      <button type="submit" className="search-button">SEARCH</button>
     </form>
   );
 };

@@ -1,49 +1,50 @@
 .outcome-details-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  background-color: #ffffff;
+  width: 100%;
+  border-color: #000000;
+
 }
 
 .title-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .title-container h2 {
   color: #333333;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .title-container h2.italicized {
   font-style: italic;
+  color: #505050;
 }
 
-.outcome-detail {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  color: #666666;
+.dcontainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  color: #000000;
+  box-sizing: border-box;
+  max-width: 80%;
+
+}
+
+.dcontainer p {
   margin: 10px 0;
 }
 
-.outcome-detail strong {
-  color: #333333;
-}
-
-.outcome-details-container p strong {
+.dcontainer p strong {
   color: #333333;
   text-align: left;
+  font-style: bold;
 }
 
-.outcome-detail span {
+.dcontainer p span {
+  color: #333333;
   text-align: center;
 }
 
@@ -58,12 +59,34 @@
   padding: 10px;
   flex-grow: 1;
   margin: 0 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
 }
 
 .action-update {
+  margin-top: 15px; 
   padding: 10px;
-  flex-grow: .05;
   margin: 0 10px;
-  background-color: rgb(4, 162, 36);
+  background-color: #1c9700;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
+.action-update:hover {
+  background-color: #016914;
+}

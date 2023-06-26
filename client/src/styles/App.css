@@ -81,6 +81,7 @@ body{
 }
 
 .add-outcome-button {
+  text-align: center;
   display: inline-block;
   margin-left: 20px;
   padding: 10px 20px;
@@ -141,3 +142,4 @@ body{
 .export-button:hover {
   background-color: #0000c7; /* Change the hover background color */
 }
+

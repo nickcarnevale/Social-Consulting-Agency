@@ -7,21 +7,24 @@
   
   .search-input {
     flex-grow: 1;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
   .search-button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    background-color: #007BFF;
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    background-color: #630293;
     color: #ffffff;
     border: none;
     border-radius: 4px;
+    text-decoration: none;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  .search-button:hover {
+    background-color: #420162;
     cursor: pointer;
   }
