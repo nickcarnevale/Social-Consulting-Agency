@@ -2,6 +2,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export async function loginUser(email, password) {
   console.log(API_URL);
+  console.log(API_URL);
   const response = await fetch(`${API_URL}/users/login`, {
     method: 'POST',
     headers: {
