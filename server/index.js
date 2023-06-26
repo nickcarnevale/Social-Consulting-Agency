@@ -1,6 +1,7 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const pgp = require('pg-promise')();
 const db = pgp('postgres://dnjkzflf:mNHGBAGJPlRDVCxwaEeIsA6dpGNcMLCb@dumbo.db.elephantsql.com/dnjkzflf');
 const cors = require('cors');
@@ -9,6 +10,8 @@ const jwt = require("jsonwebtoken");
 
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
@@ -111,3 +114,9 @@ app.delete('/outcomes/:id', async (req, res) => {
       res.status(500).json({ error: 'Database Error' });
   }
 });
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
