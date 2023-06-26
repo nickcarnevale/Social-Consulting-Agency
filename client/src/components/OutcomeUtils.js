@@ -1,5 +1,7 @@
+const API_URL = process.env.REACT_APP_API_URL;
+
 export function deleteOutcome(id) {
-    return fetch(`http://localhost:3001/outcomes/${id}`, {
+    return fetch(`${API_URL}/outcomes/${id}`, {
       method: 'DELETE',
     })
       .then((response) => {
@@ -16,7 +18,7 @@ export function deleteOutcome(id) {
 }
 
 export const addOutcome = (outcome) => {
-    return fetch('http://localhost:3001/outcomes', {
+    return fetch(`${API_URL}/outcomes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -30,7 +32,7 @@ export const addOutcome = (outcome) => {
   }
 
   export async function updateOutcome(id, data) {
-    const response = await fetch(`http://localhost:3001/outcomes/${id}`, {
+    const response = await fetch(`${API_URL}/outcomes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
