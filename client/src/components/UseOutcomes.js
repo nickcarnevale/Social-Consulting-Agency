@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { sortBy } from 'lodash';
 import Papa from 'papaparse';
-import { getAllOutcomes } from '../api';
+import { bulkOutcomes, getAllOutcomes } from '../api';
 import { deleteOutcome, addOutcome , updateOutcome} from './OutcomeUtils';
 
 export default function useOutcomes() {
@@ -98,5 +98,16 @@ export default function useOutcomes() {
     link.click();
   };
 
-  return { outcomes, filteredOutcomes, searchResults, handleAddOutcome, handleUpdateOutcome, handleDeleteOutcome, handleSearch, handleOutcomeSearch, handleFilterChange, handleExport, refreshOutcomes};
+  const handleBulkTransfer = (outcomes) => {
+    bulkOutcomes(outcomes) 
+      .then((results) => {
+        console.log('Bulk transfer successful:', results);
+      })
+      .catch((error) => {
+        console.error('Error during bulk transfer:', error);
+
+      });
+  };
+
+  return { outcomes, filteredOutcomes, searchResults, handleAddOutcome, handleUpdateOutcome, handleDeleteOutcome, handleSearch, handleOutcomeSearch, handleFilterChange, handleExport, refreshOutcomes, handleBulkTransfer};
 };

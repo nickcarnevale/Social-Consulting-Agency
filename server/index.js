@@ -82,6 +82,38 @@ app.post('/outcomes', async (req, res) => {
     }
 });
 
+// Endpoint to handle bulk transfer
+app.post('/outcomes/bulk', async (req, res) => {
+    try {
+      const outcomes = req.body;
+      const createdOutcomes = await Promise.all(
+        outcomes.map((outcome) =>
+          db.one(
+            'INSERT INTO outcomes (name, nombreEspanol, stakeholder, stakeholderDescription, scale, indicator, proxy, proxyDescription, value, euroValue, reportName, reportLink) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *',
+            [
+              outcome.name,
+              outcome.nombreEspanol,
+              outcome.stakeholder,
+              outcome.stakeholderDescription,
+              outcome.scale,
+              outcome.indicator,
+              outcome.proxy,
+              outcome.proxyDescription,
+              outcome.value,
+              outcome.euroValue,
+              outcome.reportName,
+              outcome.reportLink,
+            ]
+          )
+        )
+      );
+      res.json(createdOutcomes);
+    } catch (err) {
+      res.json({ error: err.message || err });
+    }
+  });
+  
+
 // Endpoint to update an existing outcome
 app.put('/outcomes/:id', async (req, res) => {
   const id = req.params.id;

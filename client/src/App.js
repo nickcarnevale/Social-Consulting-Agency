@@ -9,11 +9,13 @@ import SearchForm from './components/SearchForm';
 import OutcomeList from './components/OutcomeList';
 import Navigate from './components/Navigate';
 import OutcomePage from './components/OutcomePage';
+import DataDump from './components/DataDump';
 
 import './styles/App.css';
 
 export default function App() {
-  const { searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch, refreshOutcomes, handleOutcomeSearch, handleFilterChange, filteredOutcomes, handleExport } = useOutcomes();
+  const { searchResults, handleAddOutcome, handleDeleteOutcome, handleSearch, refreshOutcomes, handleOutcomeSearch, handleFilterChange, filteredOutcomes, handleExport, handleBulkTransfer } = useOutcomes();
+  
 
   return (
     <AuthProvider authStorageType={'cookie'}
@@ -52,6 +54,7 @@ export default function App() {
               <>
                 <RequireAuth loginPath="/">
                   <AddOutcomeForm onAddOutcome={handleAddOutcome}/>
+                  <DataDump onBulkTransfer={handleBulkTransfer}/>
                   <Link to="/home" className="back-to-search-button">Back to Search</Link>
                 </RequireAuth>
               </>

@@ -49,6 +49,7 @@ function AddOutcomeForm({ onAddOutcome}) {
   };
 
   return (
+    
     <form onSubmit={handleSubmit} className="add-outcome-form">
       {Object.entries(outcome).map(([key, value], index) => (
         <div key={key} className="form-group">

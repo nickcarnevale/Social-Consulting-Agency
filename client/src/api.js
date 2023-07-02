@@ -30,6 +30,18 @@ export async function createOutcome(outcome) {
   return response.json();
 }
 
+export async function bulkOutcomes(outcomes) {
+  const response = await fetch(`${API_URL}/outcomes/bulk`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(outcomes),
+  });
+  return response.json();
+}
+
+
 export async function updateOutcome(name, outcome) {
   const response = await fetch(`${API_URL}/outcomes/${name}`, {
     method: 'PUT',
